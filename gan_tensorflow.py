@@ -13,8 +13,6 @@ def generator(x):
 
     # 1st hidden layer
 
-    ### Code:ToDo (Change the architecture as CW2 Guidance required)
-
     w0 = tf.get_variable('G_w0', [x.get_shape()[1],256], initializer=w_init)
     b0 = tf.get_variable('G_b0', [256], initializer=b_init)
     h0 = tf.nn.leaky_relu(tf.matmul(x, w0) + b0)
@@ -40,8 +38,6 @@ def discriminator(x, drop_out):
     w_init = tf.truncated_normal_initializer(mean=0, stddev=0.02)
     b_init = tf.constant_initializer(0.)
 
-    ###  Code: ToDO( Change the architecture as CW2 Guidance required)
-    # 1st hidden layer
 
     w0 = tf.get_variable('D_w0', [x.get_shape()[1], 1024], initializer=w_init)
     b0 = tf.get_variable('D_b0', [1024], initializer=b_init)
@@ -67,8 +63,6 @@ def discriminator(x, drop_out):
 
 def show_result(num_epoch, show = False, save = False, path = 'result.png'):
     z_ = np.random.normal(0, 1, (25, 100))    # z_ is the input of generator, every epochs will random produce input
-    ##Code:ToDo complete the rest of part
-
 
     test_images = sess.run(G_z, {z: z_, drop_out: 0.0})
 
@@ -191,7 +185,6 @@ for epoch in range(train_epoch):
     per_epoch_ptime = epoch_end_time - epoch_start_time
     print('[%d/%d] - ptime: %.2f loss_d: %.3f, loss_g: %.3f' % ((epoch + 1), train_epoch, per_epoch_ptime, np.mean(D_losses), np.mean(G_losses)))
 
-    ### Code: TODO Code complete show_result function)
     arr = [0, 19, 49, 99]
     if epoch in arr:
       p = 'MNIST_GAN_results/results/MNIST_GAN_' + str(epoch + 1) + '.png'
